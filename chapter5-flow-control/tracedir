@@ -1,0 +1,10 @@
+#!/bin/bash
+
+file=$1
+echo $file
+
+if [ -d "$file" ]; then
+    cd "$file"
+    ~/tracedir $(ls) #invoke a new shell for the new script to run in a new directory
+    cd ..
+fi
