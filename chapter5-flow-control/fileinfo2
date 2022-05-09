@@ -1,0 +1,43 @@
+#!/bin/bash
+
+finfo() {
+if [ ! -e "$1" ]; then
+    echo "file $1 does not exist"
+    exit 1
+fi
+
+if [ -d "$1" ]; then # this checks if it is regular directory
+    echo -n "$1 is a directory that you may "
+    if [ ! -x "$1" ]; then # -x check if the directory is searchable
+        echo -n "not "
+    fi 
+    echo "search."
+    elif [ -f "$1" ]; then # -f check if file is regular file
+        echo "$1 is a regular file."
+    else 
+        echo "$1 is a specia type of file."
+fi
+
+if [ -O "$1" ]; then
+    echo "You own the file."
+else
+    echo "You do not own the file."
+fi
+
+if [ -r "$1" ]; then
+    echo "You have read permission on the file."
+fi
+
+if [ -w "$1" ]; then
+    echo "You have write permission on the file."
+fi
+
+if [ -x "$1" -a ! -d "$1" ]; then
+    echo "You have execute permission on the file."
+fi
+}
+
+for filename in "$@"; do 
+    finfo "$filename"
+    echo
+done

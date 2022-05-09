@@ -1,0 +1,32 @@
+#!/bin/bash
+
+filename=$1
+extension=${filename##*.}
+pnmfile=${filename%.*}.pnm #filename%.* gets everything before the dot
+outfile=${filename%.*}.jpg
+
+if [ -z $filename ]; then # -z check if the string is null, or has length zero
+    echo "procfile: No file specified"
+    exit 0
+fi
+
+if [ $extension = jpg ]; then
+    exit 0
+elif [ $extension = tga ]; then
+    tgatoppm $filename > $pnmfile
+elif [ $extension = xpm ]; then
+    xpmtoppm $filename > $pnmfile
+elif [ $extension = pcx ]; then
+    pcxtoppm $filename > $pnmfile
+elif [ $extension = tif ]; then
+    tifftopnm $filename > $pnmfile
+elif [ $extension = gif ]; then
+    giftopnm $filename > $pnmfile
+else
+    echo "procfile: $filename is an unknows graphics file."
+    exit 0
+fi
+
+pnmtojpeg $pnmfile > $outfile
+
+rm $pnmfile

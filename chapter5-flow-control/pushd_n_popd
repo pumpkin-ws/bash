@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export DIR_STACK=""
+
+popd () {
+    echo $DIR_STACK
+    if [ -n "$DIR_STACK" ]; 
+    then
+        DIR_STACK=${DIR_STACK#* }
+        cd "${DIR_STACK%% *}"
+        echo "$PWD"
+    else
+        echo "stack empty, still in $PWD"
+    fi
+}
+
+pushd() {
+    dirname=$1
+    if builtin cd "${dirname:?"missing directory name."}"
+    then
+        DIR_STACK="$dirname ${DIR_STACK:-$PWD''}"
+        echo "$DIR_STACK"
+    else
+        echo "still in $PWD"
+    fi
+}
+
+# I think mechanical keyboard is a fine construct when coming to realization that we have many things yet to consider in the not too distant future. 
+# Work extra hard so you can deserve what you set out to achieve. Don't ever stop. Move slow and steady and you will win the race eventually. 

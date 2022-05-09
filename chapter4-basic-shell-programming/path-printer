@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# task 4-4
+# PATH can be hard to distinguish when printed out as one line with colon delimiters. 
+# Display path one at a time 
+
+echo -e "${PATH//:/'\n'}"
