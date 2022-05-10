@@ -13,3 +13,9 @@ for dir in $PATH; do
         ls -ld $dir
     fi
 done
+
+echo
+
+for dir in $PATH; do
+    echo $dir
+done

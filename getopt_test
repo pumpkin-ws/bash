@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while gettopts ":ab:c" opt; do
+    case $opt in 
+        a ) echo "option a is selected";;
+        b ) echo "option b is selected";;
+        c ) echo "option c is selected";;
+        \? ) echo "usage: getopt_test [-a]"
+            exit 1
+    esac
+done
+
+shift $(($OPTIND - 1))
