@@ -14,7 +14,7 @@ if [ -d "$1" ]; then # this checks if it is regular directory
     elif [ -f "$1" ]; then # -f check if file is regular file
         echo "$1 is a regular file."
     else 
-        echo "$1 is a specia type of file."
+        echo "$1 is a special type of file."
 fi
 
 if [ -O "$1" ]; then
